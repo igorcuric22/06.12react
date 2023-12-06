@@ -17,7 +17,6 @@ function App() {
 
   const url=`https://api.github.com/users/${user}`;
 
-      setTimeout(()=>{
         fetch(url)
         .then(response=>response.json())
         .then(data=>{
@@ -27,7 +26,6 @@ function App() {
 
             setRepos(data.repos_url);
         });
-      },2000);
 
         const url_repos=`https://api.github.com/users/${user}/repos`;
 
