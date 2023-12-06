@@ -4,7 +4,7 @@ function Avatar({datax}) {
     console.log("+++",datax);
     return ( 
         <div> 
-            {datax ? (
+         {datax &&  ( Object.keys(datax).length!==0?(
     <div className="avatar">
         <p><img src={datax.avatar_url} width="300px" height="200px" /></p>
         <p>{datax.bio}</p>
@@ -14,8 +14,9 @@ function Avatar({datax}) {
       
     </div>
 ):(
-    <p>Podaci se ucitavaju</p>
-)}
+    <p>Nema rezultata</p>
+) )
+}
         </div>
      );
 }
