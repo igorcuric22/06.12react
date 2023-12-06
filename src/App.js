@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import Avatar from './Avatar';
 import Repos from './Repos';
@@ -14,6 +14,11 @@ function App() {
   }
 
   const loadApi=()=>{
+
+    if(user.length===0){
+      alert("Nisi unio usera");
+      return;
+    }
 
   const url=`https://api.github.com/users/${user}`;
 
@@ -40,6 +45,10 @@ function App() {
         });
 
         }
+
+      useEffect(()=>{
+
+      },[])
 
   return (
     <div className="App">
