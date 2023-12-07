@@ -1,3 +1,18 @@
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+
+----------------------------------------------------------------
+
 import { useEffect, useState } from 'react';
 import './App.css';
 import Avatar from './Avatar';
@@ -63,11 +78,65 @@ function App() {
     <button onClick={loadApi} >Stisni</button>
     </div>
     
-    {datax && <Avatar datax={datax}/> }
-    {reposData && <Repos reposData={reposData} />}
+    <Avatar datax={datax}/>
+    <Repos reposData={reposData} />
 
     </div>
   );
 }
 
 export default App;
+
+----------------------------------------------------------
+
+// import "./Avatar.css"
+
+function Avatar({datax}) {
+    console.log("+++",datax);
+    return ( 
+        <div> 
+         {datax &&  ( Object.keys(datax).length!==0?(
+    <div className="avatar">
+        <p><img src={datax.avatar_url} width="300px" height="200px" /></p>
+        <p>{datax.bio}</p>
+        <p>{datax.name}</p>
+        <p>{datax.location}</p>
+        
+      
+    </div>
+):(
+    <p>Nema rezultata</p>
+) )
+}
+        </div>
+     );
+}
+
+export default Avatar;
+
+----------------------------------------------------------------
+
+function Repos({reposData}) {
+    console.log("===",reposData);
+    return ( 
+        <div>
+            <h1>Repositories</h1>
+                { reposData && (reposData.message!=="Not Found"?
+           
+            (reposData.map(item=>{
+                return (
+                <div>{item.name}</div>
+                )
+                }) ):(<p>Nije nasao</p>)) }
+            
+
+          
+            
+        </div>
+     );
+}
+
+export default Repos;
+
+///////////////////////////////////////////////////////////
+

@@ -6,7 +6,7 @@ function Avatar({datax}) {
         <div> 
          {datax &&  ( Object.keys(datax).length!==0?(
     <div className="avatar">
-        <p><img src={datax.avatar_url} width="300px" height="200px" /></p>
+       {datax.avatar_url && (<p><img src={datax.avatar_url} width="300px" height="200px" /></p>)}
         <p>{datax.bio}</p>
         <p>{datax.name}</p>
         <p>{datax.location}</p>
