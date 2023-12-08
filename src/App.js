@@ -41,14 +41,14 @@ function App() {
 
    
 
-        // const url_repos=`https://api.github.com/users/${user}/repos`;
+        const url_repos=`https://api.github.com/users/${user}/repos`;
 
-        // fetch(url_repos)
-        // .then(response=>response.json())
-        // .then(data=>{
-        //     console.log(data);
-        //     setReposData(data);
-        // });
+        fetch(url_repos)
+        .then(response=>response.json())
+        .then(data=>{
+            console.log(data);
+            setReposData(data);
+        });
 
         }
 
@@ -77,6 +77,7 @@ function App() {
         <p>{datax.bio}</p>
         <p>{datax.name}</p>
         <p>{datax.location}</p>
+        {reposData && <Repos reposData={reposData} />} 
               </div>):(p && (<div className="loading"></div>))
       
    }
