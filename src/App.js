@@ -70,24 +70,9 @@ function App() {
     <button onClick={loadApi} >Stisni</button>
     </div>
     
-    
-   { datax?(<div>
-    
-       {datax.avatar_url && (<p><img src={datax.avatar_url} width="300px" height="200px" /></p>)}
-        <p>{datax.bio}</p>
-        <p>{datax.name}</p>
-        <p>{datax.location}</p>
-        {reposData && <Repos reposData={reposData} />} 
-              </div>):(p && (<div className="loading"></div>))
-      
-   }
+    <Avatar datax={datax} p={p} reposData={reposData}/> 
 
-      
-    
-   
-    
-    {/* {datax && <Avatar datax={datax}/> }
-    {reposData && <Repos reposData={reposData} />} */}
+    {/* {reposData && <Repos reposData={reposData} />}  */}
 
     </div>
     )
