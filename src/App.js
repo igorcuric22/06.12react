@@ -6,8 +6,10 @@ import Repos from './Repos';
 function App() {
   const [user,setUser]=useState("facebook");
   const [datax,setData]=useState();
-  const [repos,setRepos]=useState();
   const [reposData,setReposData]=useState();
+  const [p,setP]=useState(false);
+  
+ 
 
   const handleUser=(e)=>{
       setUser(e.target.value);
@@ -20,7 +22,12 @@ function App() {
       return;
     }
 
+   setData(null);
+   setP(true);
+
   const url=`https://api.github.com/users/${user}`;
+
+      
 
       setTimeout(()=>{
         fetch(url)
@@ -29,25 +36,25 @@ function App() {
             console.log(data);
             // console.log(data.results);
             setData(data);
-
-            setRepos(data.repos_url);
         });
       },2000);
 
-        const url_repos=`https://api.github.com/users/${user}/repos`;
+   
 
-        fetch(url_repos)
-        .then(response=>response.json())
-        .then(data=>{
-            console.log(data);
-            // console.log(data.results);
-            setReposData(data);
-        });
+        // const url_repos=`https://api.github.com/users/${user}/repos`;
+
+        // fetch(url_repos)
+        // .then(response=>response.json())
+        // .then(data=>{
+        //     console.log(data);
+        //     setReposData(data);
+        // });
 
         }
 
       useEffect(()=>{
-
+        //setP(true);
+        console.log(p);
       },[])
 
   return (
@@ -63,11 +70,27 @@ function App() {
     <button onClick={loadApi} >Stisni</button>
     </div>
     
-    {datax && <Avatar datax={datax}/> }
-    {reposData && <Repos reposData={reposData} />}
+    
+   { datax?(<div>
+    
+       {datax.avatar_url && (<p><img src={datax.avatar_url} width="300px" height="200px" /></p>)}
+        <p>{datax.bio}</p>
+        <p>{datax.name}</p>
+        <p>{datax.location}</p>
+              </div>):(p && (<div className="loading"></div>))
+      
+   }
+
+      
+    
+   
+    
+    {/* {datax && <Avatar datax={datax}/> }
+    {reposData && <Repos reposData={reposData} />} */}
 
     </div>
-  );
-}
+    )
+  
+  }
 
 export default App;
