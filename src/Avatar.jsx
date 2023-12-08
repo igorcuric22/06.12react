@@ -20,6 +20,8 @@ function Avatar({datax,p,reposData}) {
    
 }
 
+{datax && datax.message==="Not Found" && (<div>Nije pronaden</div>)}
+
 
         </div>
      );
